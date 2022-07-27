@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import java.io.InputStreamReader
 import android.view.View
 import android.widget.ListView
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     var output = mutableListOf<String>()
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val listView: ListView = findViewById<View>(R.id.mobile_list) as ListView
 
         listView.adapter = adapter
+
+
 
     }
 
