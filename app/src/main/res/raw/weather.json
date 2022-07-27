@@ -1,0 +1,53 @@
+{
+    "periods": [
+      {
+        "name": "This Afternoon",
+        "temperature": 75,
+        "temperatureUnit": "F",
+        "windSpeed": "20 mph",
+        "windDirection": "N",
+        "shortForecast": "Mostly Sunny"
+      },
+      {
+        "name": "Tonight",
+        "temperature": 53,
+        "temperatureUnit": "F",
+        "windSpeed": "15 to 20 mph",
+        "windDirection": "S",
+        "shortForecast": "Partly Cloudy"
+      },
+      {
+        "name": "Tuesday",
+        "temperature": 77,
+        "temperatureUnit": "F",
+        "windSpeed": "15 to 20 mph",
+        "windDirection": "S",
+        "shortForecast": "Sunny"
+      },
+      {
+        "name": "Tuesday Night",
+        "temperature": 47,
+        "temperatureUnit": "F",
+        "windSpeed": "10 to 15 mph",
+        "windDirection": "SW",
+        "shortForecast": "Slight Chance Showers And Thunderstorms"
+      },
+      {
+        "name": "Wednesday",
+        "temperature": 60,
+        "temperatureUnit": "F",
+        "windSpeed": "10 to 20 mph",
+        "windDirection": "W",
+        "shortForecast": "Sunny"
+      },
+      {
+        "name": "Wednesday Night",
+        "temperature": 38,
+        "temperatureUnit": "F",
+        "windSpeed": "10 to 15 mph",
+        "windDirection": "NW",
+        "shortForecast": "Mostly Clear",
+        "longForecast": "Mostly Clear with slight chance of rain"
+      }
+    ]
+  }
