@@ -7,7 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import java.io.InputStreamReader
 import android.view.View
 import android.widget.ListView
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.LaunchedEffect
+import com.example.weatherapp.ui.HomeView
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -26,11 +30,16 @@ class MainActivity : AppCompatActivity() {
         weatherreader(json)
         println(output)
 
-        val adapter = ArrayAdapter<String>(this, R.layout.activity_listview, output)
+        val adapter = ArrayAdapter(this, R.layout.activity_listview, output)
         val listView: ListView = findViewById<View>(R.id.mobile_list) as ListView
 
         listView.adapter = adapter
 
+        setContent {
+
+            HomeView()
+
+        }
 
 
     }

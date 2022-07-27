@@ -1,11 +1,13 @@
 package com.example.weatherapp.api
 
+import android.content.Context
 import com.example.weatherapp.api.weather.WeatherApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,6 +26,12 @@ class ApiModule {
         return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun createMoshiDeserializer(@ApplicationContext context : Context, moshi: Moshi) : MoshiDeserializer {
+        return MoshiDeserializer(context, moshi = moshi)
     }
 
     //Not actually using this but adding for funsies
@@ -54,8 +62,8 @@ class ApiModule {
         moshi: Moshi
     ) : Retrofit {
         return Retrofit.Builder()
-            //Sub with the actual base URL
-            //.baseUrl("127.0. 0.1")
+            //Sub with the actual base URL in
+            .baseUrl("https://fakeUrl.com")
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()

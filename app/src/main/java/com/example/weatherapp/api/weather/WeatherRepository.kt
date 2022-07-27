@@ -5,6 +5,7 @@ import com.example.weatherapp.api.models.Period
 import com.example.weatherapp.api.toApiResponse
 import javax.inject.Inject
 
+//I wanted to demonstrate how I would go about getting the data if it lived in an API endpoint
 class WeatherRepository @Inject constructor(
     val api: WeatherApi
 ) {
