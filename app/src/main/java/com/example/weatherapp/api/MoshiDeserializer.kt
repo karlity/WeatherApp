@@ -18,7 +18,7 @@ class MoshiDeserializer @Inject constructor(
 
         val adapter = moshi.adapter(Periods::class.java)
         val obj = appContext.resources.openRawResource(R.raw.weather).source()
-        var jsonReader = JsonReader.of(obj.buffer())
+        val jsonReader = JsonReader.of(obj.buffer())
 
 
         return adapter.fromJson(jsonReader)
