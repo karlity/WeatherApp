@@ -1,6 +1,7 @@
 package com.example.weatherapp.api
 
 import android.content.Context
+import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.api.weather.WeatherApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -44,13 +45,14 @@ class ApiModule {
         }
     }
 
+    //Same with this
     @Singleton
     @Provides
     fun createOkHttp(
         loggingInterceptor: HttpLoggingInterceptor
     ) : OkHttpClient {
         val builder = OkHttpClient.Builder()
-        //if (BuildC)
+        if (BuildConfig.DEBUG) builder.addInterceptor(loggingInterceptor)
         return builder.build()
     }
 

@@ -22,10 +22,7 @@ class MainActivity : AppCompatActivity() {
         val viewModel: MainActivityViewModel by viewModels()
 
         setContent {
-            MaterialTheme {
-
                 HomeView(viewModel = viewModel)
-            }
         }
     }
 
