@@ -35,11 +35,8 @@ class HomeViewTest {
     private val weatherApi: WeatherApi = mockk(relaxed = true)
     private val weatherRepository: WeatherRepository = spyk(WeatherRepository(weatherApi))
 
-    private val moshi: Moshi = mockk(relaxed = true)
-    val context = mockk<Context>(relaxed = true)
 
-    private val moshiDeserializer: MoshiDeserializer =
-        spyk(MoshiDeserializer(moshi = moshi, appContext = context))
+    private val moshiDeserializer: MoshiDeserializer = mockk(relaxed = true)
 
     private lateinit var mainActivityViewModel: MainActivityViewModel
 
