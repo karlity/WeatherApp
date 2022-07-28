@@ -30,11 +30,9 @@ import org.junit.Rule
 @ExperimentalCoroutinesApi
 class HomeViewTest {
 
-
     //Just adding this to flex the networking setup. Not used in actual implementation
     private val weatherApi: WeatherApi = mockk(relaxed = true)
     private val weatherRepository: WeatherRepository = spyk(WeatherRepository(weatherApi))
-
 
     private val moshiDeserializer: MoshiDeserializer = mockk(relaxed = true)
 
@@ -53,58 +51,60 @@ class HomeViewTest {
 
     @Test
     fun `load weather`() {
-        coEvery { moshiDeserializer.getPeriods() } coAnswers { Periods(
-            listOf(
-                Period(
-                    name = "This Afternoon",
-                    temperature = 75,
-                    temperatureUnit = 'F',
-                    windSpeed = "20 mph",
-                    windDirection = "N",
-                    shortForecast = "Mostly Sunny"
-                ),
-                Period(
-                    name = "Tonight",
-                    temperature = 53,
-                    temperatureUnit = 'F',
-                    windSpeed = "15 to 20 mph",
-                    windDirection = "S",
-                    shortForecast = "Partly Cloudy",
-                ),
-                Period(
-                    name = "Tuesday",
-                    temperature = 77,
-                    temperatureUnit = 'F',
-                    windSpeed = "15 to 20 mph",
-                    windDirection = "S",
-                    shortForecast = "Sunny",
-                ),
-                Period(
-                    name = "Tuesday Night",
-                    temperature = 47,
-                    temperatureUnit = 'F',
-                    windSpeed = "10 to 15 mph",
-                    windDirection = "SW",
-                    shortForecast = "Slight Chance Showers And Thunderstorms",
-                ),
-                Period(
-                    name = "Wednesday",
-                    temperature = 60,
-                    temperatureUnit = 'F',
-                    windSpeed = "10 to 15 mph",
-                    windDirection = "W",
-                    shortForecast = "Sunny",
-                ),
-                Period(
-                    name = "Wednesday Night",
-                    temperature = 38,
-                    temperatureUnit = 'F',
-                    windSpeed = "10 to 15 mph",
-                    windDirection = "NW",
-                    shortForecast = "Mostly Clear",
-                ),
+        coEvery { moshiDeserializer.getPeriods() } coAnswers {
+            Periods(
+                listOf(
+                    Period(
+                        name = "This Afternoon",
+                        temperature = 75,
+                        temperatureUnit = 'F',
+                        windSpeed = "20 mph",
+                        windDirection = "N",
+                        shortForecast = "Mostly Sunny"
+                    ),
+                    Period(
+                        name = "Tonight",
+                        temperature = 53,
+                        temperatureUnit = 'F',
+                        windSpeed = "15 to 20 mph",
+                        windDirection = "S",
+                        shortForecast = "Partly Cloudy",
+                    ),
+                    Period(
+                        name = "Tuesday",
+                        temperature = 77,
+                        temperatureUnit = 'F',
+                        windSpeed = "15 to 20 mph",
+                        windDirection = "S",
+                        shortForecast = "Sunny",
+                    ),
+                    Period(
+                        name = "Tuesday Night",
+                        temperature = 47,
+                        temperatureUnit = 'F',
+                        windSpeed = "10 to 15 mph",
+                        windDirection = "SW",
+                        shortForecast = "Slight Chance Showers And Thunderstorms",
+                    ),
+                    Period(
+                        name = "Wednesday",
+                        temperature = 60,
+                        temperatureUnit = 'F',
+                        windSpeed = "10 to 15 mph",
+                        windDirection = "W",
+                        shortForecast = "Sunny",
+                    ),
+                    Period(
+                        name = "Wednesday Night",
+                        temperature = 38,
+                        temperatureUnit = 'F',
+                        windSpeed = "10 to 15 mph",
+                        windDirection = "NW",
+                        shortForecast = "Mostly Clear",
+                    ),
+                )
             )
-        ) }
+        }
 
         var latestCollectedState = MainActivityViewState()
 
@@ -120,13 +120,14 @@ class HomeViewTest {
                     latestCollectedState = it
                 }
             }
+
+            //Needed to allow the launched job to complete
             testScheduler.advanceUntilIdle()
 
+            //Cancels the [actionflow]'s childjob in UtilViewmodel
             currentCoroutineContext().cancelChildren()
 
             assertEquals(updatedState, latestCollectedState)
-
-
         }
     }
 
