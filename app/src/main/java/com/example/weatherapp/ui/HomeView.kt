@@ -29,7 +29,7 @@ import com.example.weatherapp.WeatherViewHolder
 import timber.log.Timber
 
 @Composable
-fun HomeView(viewModel: MainActivityViewModel) {
+fun HomeView(viewModel: MainActivityViewModel = hiltViewModel()) {
     if (!viewModel.isInitialized) {
         viewModel.startViewModel(MainActivityActions.LoadPeriods)
     }
